@@ -1,21 +1,23 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 public class HangmanGui {
 
     private JTextField Eingabefeld;
     private JTextField Ausgabefeld;
     private JPanel Mainpanel;
-    private JButton button1;
     private JButton button2;
-    String c = "Gestrandet";
-    String d = "ErwinArent";
-    String e = "TimAsmus";
+    String c = "gestrandet";
+    String d = "erwinArent";
+    String e = "zimAsmus";
 
-    String wort = "Hallo";
+    String wort = "hallo";
     String [] wort1;
-
+    String Platzhalter ;
+ String [] wortBuchstabe;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("HangmanGui");
@@ -24,38 +26,42 @@ public class HangmanGui {
         frame.pack();
         frame.setVisible(true);
     }
+
+
+
+
     public HangmanGui() {
-        Ausgabefeld.addActionListener(new ActionListener() {
+        wort1 = new String [wort.length()];
+        wortBuchstabe = new String[wort.length()];
+
+        for (int i = 0; i < wort.length(); i++) {
+            wort1[i] = " _";
+wortBuchstabe[i]= String.valueOf(wort.charAt(i));
+
+        }
+        button2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                Platzhalter = Eingabefeld.getText();
+
                 for (int i = 0; i < wort.length(); i++) {
-                    wort1[i] = " _";
+                    if (Platzhalter.equals(wortBuchstabe[i])) {
+                        wort1[i] = Platzhalter;
+
+                    }
+
+
                 }
+
+
                 Ausgabefeld.setText("");
                 for (int i = 0; i < wort.length(); i++) {
                     Ausgabefeld.setText(Ausgabefeld.getText() + wort1[i]);
-
-
+                    Eingabefeld.setText("");
                 }
             }
         });
-
-        Eingabefeld.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-    }}
-
-
-
-
-
-
-
-
-
-
-
+    }
+}
 
