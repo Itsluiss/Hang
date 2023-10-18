@@ -1,8 +1,6 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Arrays;
 
 public class HangmanGui {
 
@@ -10,6 +8,7 @@ public class HangmanGui {
     private JTextField Ausgabefeld;
     private JPanel Mainpanel;
     private JButton button2;
+    private JTextArea Area;
     String c = "gestrandet";
     String d = "erwinArent";
     String e = "zimAsmus";
@@ -18,6 +17,7 @@ public class HangmanGui {
     String [] wort1;
     String Platzhalter ;
  String [] wortBuchstabe;
+ int o ;
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("HangmanGui");
@@ -27,12 +27,10 @@ public class HangmanGui {
         frame.setVisible(true);
     }
 
-
-
-
     public HangmanGui() {
-        wort1 = new String [wort.length()];
-        wortBuchstabe = new String[wort.length()];
+        wort1 = new String [wort.length()];//Array 1
+        wortBuchstabe = new String[wort.length()];//Array 2
+o=0;
 
         for (int i = 0; i < wort.length(); i++) {
             wort1[i] = " _";
@@ -49,16 +47,25 @@ wortBuchstabe[i]= String.valueOf(wort.charAt(i));
                     if (Platzhalter.equals(wortBuchstabe[i])) {
                         wort1[i] = Platzhalter;
 
+                    } else {
+
+                            if (o == 3) {
+                                Area.setText("Hallo \n ich \t ");
+                            }
+                            if (o == 2) {
+                                Area.setText("moin \n zzh \t ");
+                            }
+                            if (o == 1) {
+                                Area.setText("Hazputpuzo \n icutzuuh \t ");
+                            }
                     }
 
-
                 }
-
-
                 Ausgabefeld.setText("");
                 for (int i = 0; i < wort.length(); i++) {
                     Ausgabefeld.setText(Ausgabefeld.getText() + wort1[i]);
                     Eingabefeld.setText("");
+
                 }
             }
         });
